@@ -33,7 +33,10 @@ const FormInput = ({
   return (
     <div className="mb-5">
       {label && (
-        <div className="mb-1 text-sm md:text-base"> {label ? label : ""}</div>
+        <div className="mb-1 text-sm md:text-base secondary-text">
+          {" "}
+          {label ? label : ""}
+        </div>
       )}
       <Controller
         control={control}
@@ -45,7 +48,7 @@ const FormInput = ({
             {...field}
             value={value ? value : field?.value}
             disabled={disabled}
-            className="input focus:outline-none md:text-lg  w-11/12 rounded bg-transparent border-2 border-solid border-[#FFCF99]"
+            className="input focus:outline-none md:text-lg w-full bg-transparent border border-solid border-[#1d3557] box-border text-gray-800 rounded-2xl"
           />
         )}
       />

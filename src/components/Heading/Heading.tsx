@@ -10,11 +10,11 @@ const Heading = ({
   theme?: "dark" | "light";
 }) => {
   return (
-    <h1 className="heading mb-3 lg:mb-5">
+    <h1 className="heading mb-3 md:mb-6 lg:mb-8">
       <span className={theme === "light" ? "primary-text" : "secondary-text"}>
         {label}
       </span>{" "}
-      <span className={theme === "light" ? "text-gray-800" : "base-text"}>
+      <span className={theme === "light" ? "secondary-text" : "base-text"}>
         {subLabel}
       </span>
     </h1>

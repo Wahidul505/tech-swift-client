@@ -6,8 +6,7 @@ import React from "react";
 const HomePage = () => {
   return (
     <div>
-      <Navbar />
-      <div className="max-w-7xl mx-auto pt-24 lg:pt-32">
+      <div className="max-w-7xl mx-auto">
         <div className="mb-8 md:mb-10 lg:mb-12">
           <Banner />
         </div>

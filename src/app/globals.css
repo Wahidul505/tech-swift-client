@@ -15,7 +15,7 @@ body {
 }
 
 .active {
-  color: white;
+  color: #457b9d;
 }
 
 .primary-bg {
@@ -57,7 +57,7 @@ body {
 
 @media only screen and (min-width: 1024px) {
   .heading {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 32px;
   }
 

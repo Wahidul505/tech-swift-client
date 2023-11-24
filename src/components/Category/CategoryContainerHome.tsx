@@ -28,7 +28,7 @@ const CategoryContainerHome = () => {
             className="flex justify-center cursor-pointer"
             onClick={() => router.push(`/category/${category?._id}`)}
           >
-            <div className="h-36 w-52 md:h-56 md:w-72 lg:h-64 lg:w-96 flex flex-col items-center justify-center shadow-lg rounded-3xl mx-1 p-3 md:p-5 base-bg shadow-gray-300">
+            <div className="h-36 w-52 md:h-56 md:w-72 lg:h-64 lg:w-96 flex flex-col items-center justify-center shadow-lg rounded-2xl mx-1 p-3 md:p-5 base-bg shadow-gray-300">
               <Image
                 src={category?.image}
                 alt=""
