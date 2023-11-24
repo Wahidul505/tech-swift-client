@@ -3,8 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Glamour Reserve",
-  description: "Glamour Reserve at your Makeover Service",
+  title: "Tech Swift",
+  description: "Tech Swift E-commerce",
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="min-h-screen pb-32">
+        <div className="min-h-screen">
           <Providers>{children}</Providers>
         </div>
       </body>
