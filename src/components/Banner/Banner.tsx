@@ -20,11 +20,8 @@ const Banner = () => {
           label="Unleash Innovation"
           subLabel="with the Latest iPhones"
           color="secondary-text"
+          orientation="landscape"
         />
-        <p className="text base-text">
-          Elevate your digital experience with the cutting-edge technology of
-          the newest iPhone models.
-        </p>
       </BannerLayout>
       <BannerLayout
         href="/"
@@ -36,6 +33,7 @@ const Banner = () => {
           label="Unrivaled Sound:"
           subLabel="AirPods"
           color="primary-text"
+          orientation="square"
         />
       </BannerLayout>
       <BannerLayout
@@ -48,6 +46,7 @@ const Banner = () => {
           label="Stay Connected"
           subLabel="with Apple Watch"
           color="secondary-text"
+          orientation="square"
         />
       </BannerLayout>
     </div>

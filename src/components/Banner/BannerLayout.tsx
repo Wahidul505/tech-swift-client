@@ -15,13 +15,13 @@ const BannerLayout = ({ href, size, imgSrc, children, bg }: IProps) => {
     <div
       className={`flex justify-center items-center ${bg} ${
         size === "big"
-          ? "col-span-2 lg:col-span-4 row-span-2 h-96 rounded-3xl m-2 p-3 md:p-6"
+          ? "col-span-2 lg:col-span-4 row-span-2 h-96 rounded-3xl m-2 p-3 md:p-6 flex-col-reverse md:flex-row"
           : "col-span-2 md:col-span-1 lg:col-span-2  h-44 rounded-3xl m-2 relative p-3 md:p-4"
       }`}
     >
       <div className="w-fit">{children}</div>
 
-      <div className="w-fit">
+      <div className="w-fit m-3">
         <Image
           src={imgSrc}
           alt=""
