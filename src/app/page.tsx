@@ -1,6 +1,5 @@
 import Banner from "@/components/Banner/Banner";
 import CategoryContainerHome from "@/components/Category/CategoryContainerHome";
-import Navbar from "@/components/Navbar/Navbar";
 import React from "react";
 
 const HomePage = () => {

@@ -6,6 +6,7 @@ import {
 import { getUserInfo } from "@/services/auth.service";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { BsCart2 } from "react-icons/bs";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
@@ -44,10 +45,33 @@ const ProductCard = ({ product }: { product: any }) => {
     }
   }, [wishlistData, product?._id, userId]);
 
-  if (wishlistIsLoading) return <LoadingPage />;
+  const handleAddToCart = async (id: string) => {
+    const existingProducts = JSON.parse(localStorage.getItem("cart") as string);
+    let newProducts;
+    if (existingProducts) {
+      const alreadyExist = existingProducts?.find(
+        (product: any) => product?.productId === id
+      );
+      if (alreadyExist) {
+        toast("Already added to cart");
+        return;
+      } else {
+        newProducts = [...existingProducts, { productId: id, quantity: 1 }];
+        toast.success("Added to Cart");
+      }
+    } else {
+      newProducts = [
+        {
+          productId: id,
+          quantity: 1,
+        },
+      ];
+      toast.success("Added to Cart");
+    }
+    localStorage.setItem("cart", JSON.stringify(newProducts));
+  };
 
-  // console.log(wishlistData);
-  // console.log(userId);
+  if (wishlistIsLoading) return <LoadingPage />;
 
   return (
     <div className="w-56 lg:w-72 xl:w-80 m-3 md:m-5 lg:m-8 rounded-2xl overflow-hidden shadow-lg transition-transform duration-400 ease-in cursor-pointer h-96 relative">
@@ -65,20 +89,24 @@ const ProductCard = ({ product }: { product: any }) => {
         <div className="text-gray-800 text my-0">{product?.title}</div>
         <div className="primary-text text">${product?.price}</div>
         <div className="flex mt-2 w-fit absolute bottom-3 right-3">
-          {isWishListed ? (
-            <button disabled className="border-none ">
-              <IoMdHeart className="text-xl lg:text-2xl text-red-500 mr-2" />
-            </button>
-          ) : (
-            <button
-              onClick={() => handleAddToWishlist(product?._id)}
-              className="border-none cursor-pointer"
-            >
-              <IoMdHeartEmpty className="text-xl lg:text-2xl  mr-2" />
-            </button>
-          )}
+          {userId &&
+            (isWishListed ? (
+              <button disabled className="border-none ">
+                <IoMdHeart className="text-xl lg:text-2xl text-red-500 mr-2" />
+              </button>
+            ) : (
+              <button
+                onClick={() => handleAddToWishlist(product?._id)}
+                className="border-none cursor-pointer"
+              >
+                <IoMdHeartEmpty className="text-xl lg:text-2xl  mr-2" />
+              </button>
+            ))}
 
-          <button className="border-none cursor-pointer">
+          <button
+            onClick={() => handleAddToCart(product?._id)}
+            className="border-none cursor-pointer"
+          >
             <BsCart2 className="text-xl lg:text-2xl" />
           </button>
         </div>

@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: #f1faee;
+  background-color: whitesmoke;
 }
 
 .active {
@@ -33,11 +33,11 @@ body {
 }
 
 .base-bg {
-  background-color: #f1faee;
+  background-color: whitesmoke;
 }
 
 .base-text {
-  color: #f1faee;
+  color: whitesmoke;
 }
 
 .heading {
