@@ -1,7 +1,22 @@
+"use client";
+import LoadingPage from "@/app/loading";
+import ProductCard from "@/components/Card/ProductCard";
+import { useProductsQuery } from "@/redux/api/productApi";
 import React from "react";
 
 const ShopPage = () => {
-  return <div>shop page</div>;
+  const { data, isLoading } = useProductsQuery({ limit: 100 });
+  if (isLoading) return <LoadingPage />;
+  return (
+    <div>
+      <div className="flex justify-center flex-wrap">
+        {data &&
+          data?.map((product: any) => (
+            <ProductCard key={product?.id} product={product} />
+          ))}
+      </div>
+    </div>
+  );
 };
 
 export default ShopPage;

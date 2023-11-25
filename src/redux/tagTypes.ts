@@ -1,19 +1,17 @@
 export enum tagTypes {
   user = "user",
-  service = "service",
-  booking = "booking",
-  blog = "blog",
-  faq = "faq",
-  profile = "profile",
   category = "category",
+  product = "produce",
+  wishlist = "wishlist",
+  order = "order",
+  profile = "profile",
 }
 
 export const tagTypesList = [
   tagTypes.user,
-  tagTypes.service,
-  tagTypes.booking,
-  tagTypes.blog,
-  tagTypes.faq,
-  tagTypes.profile,
   tagTypes.category,
+  tagTypes.product,
+  tagTypes.wishlist,
+  tagTypes.order,
+  tagTypes.profile,
 ];
