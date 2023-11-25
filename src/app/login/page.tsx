@@ -19,15 +19,16 @@ const LoginPage = () => {
   const handleSubmit = async (data: any) => {
     try {
       const result = await login({ ...data }).unwrap();
-      storeUserInfo({ accessToken: result });
       if (!result) {
         toast.error("Wrong User Credentials");
         return;
       }
       if (result) {
+        storeUserInfo({ accessToken: result });
         // router.push("/");
         router.back();
         toast.success("Logged in");
+        router.refresh();
       }
     } catch (error) {
       toast.error("something went wrong");

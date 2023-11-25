@@ -14,18 +14,9 @@ export const wishlistApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.wishlist],
     }),
 
-    updateWishlist: build.mutation({
-      query: ({ id, payload }) => ({
-        url: `${WISHLIST_URL}/${id}`,
-        method: "PATCH",
-        data: payload,
-      }),
-      invalidatesTags: [tagTypes.wishlist],
-    }),
-
     myWishlist: build.query({
-      query: () => ({
-        url: WISHLIST_URL,
+      query: (userId: string) => ({
+        url: `${WISHLIST_URL}/${userId}`,
         method: "GET",
       }),
       providesTags: [tagTypes.wishlist],
@@ -33,8 +24,4 @@ export const wishlistApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {
-  useAddToWishlistMutation,
-  useUpdateWishlistMutation,
-  useMyWishlistQuery,
-} = wishlistApi;
+export const { useAddToWishlistMutation, useMyWishlistQuery } = wishlistApi;

@@ -19,14 +19,15 @@ const RegisterPage = () => {
   const handleSubmit = async (data: any) => {
     try {
       const result = await register({ ...data }).unwrap();
-      storeUserInfo({ accessToken: result });
       if (!result) {
         toast.error("You already have an account");
         return;
       }
       if (result) {
+        storeUserInfo({ accessToken: result });
         router.back();
         toast.success("Account Created");
+        router.refresh();
       }
     } catch (error) {
       toast.error("something went wrong");
