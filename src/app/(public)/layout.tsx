@@ -8,9 +8,9 @@ type IProps = {
 
 const PublicLayout = ({ children }: IProps) => {
   return (
-    <div>
+    <div className="">
       <CategoryBar />
-      <div>{children}</div>
+      <div className="pt-24 md:pt-16">{children}</div>
     </div>
   );
 };

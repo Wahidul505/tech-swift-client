@@ -20,13 +20,13 @@ const ProductCard = ({ product }: { product: any }) => {
 
   const handleAddToWishlist = async (id: string) => {
     const exist = wishlistData?.products?.find(
-      (wishlistProduct: any) => wishlistProduct?.productId?._id === product?._id
+      (wishlistProduct: any) => wishlistProduct?.product?._id === product?._id
     );
     if (!exist) {
       const existingData = wishlistData?.products?.map((product: any) => ({
-        productId: product?.productId?._id,
+        product: product?.product?._id,
       }));
-      const newData = { productId: id };
+      const newData = { product: id };
       const products = existingData ? [...existingData, newData] : [newData];
       await addToWishlist({ products: products });
     }
@@ -37,7 +37,7 @@ const ProductCard = ({ product }: { product: any }) => {
       setIsWishListed(
         wishlistData?.products?.find(
           (wishlistProduct: any) =>
-            wishlistProduct?.productId?._id === product?._id
+            wishlistProduct?.product?._id === product?._id
         )
       );
     } else {
@@ -50,19 +50,19 @@ const ProductCard = ({ product }: { product: any }) => {
     let newProducts;
     if (existingProducts) {
       const alreadyExist = existingProducts?.find(
-        (product: any) => product?.productId === id
+        (product: any) => product?.product?._id === id
       );
       if (alreadyExist) {
         toast("Already added to cart");
         return;
       } else {
-        newProducts = [...existingProducts, { productId: id, quantity: 1 }];
+        newProducts = [...existingProducts, { product: product, quantity: 1 }];
         toast.success("Added to Cart");
       }
     } else {
       newProducts = [
         {
-          productId: id,
+          product: product,
           quantity: 1,
         },
       ];

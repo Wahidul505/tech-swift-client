@@ -12,9 +12,9 @@ interface IProps {
 
 const CustomTable = ({ columns, data }: IProps) => {
   return (
-    <div className="overflow-x-auto text-gray-800">
+    <div className="overflow-x-auto text-gray-800 bg-gray-200 shadow-lg  rounded-2xl overflow-hidden">
       <table className="table">
-        <thead className="primary-text">
+        <thead className="base-text primary-bg">
           <tr>
             {columns.map((column: IColumn, index: number) => (
               <th key={index}>{column.label}</th>

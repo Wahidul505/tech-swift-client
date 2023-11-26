@@ -5,13 +5,11 @@ import React from "react";
 const HomePage = () => {
   return (
     <div>
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8 md:mb-10 lg:mb-12">
-          <Banner />
-        </div>
-        <div className="my-8 md:my-10 lg:my-12">
-          <CategoryContainerHome />
-        </div>
+      <div className="mb-8 md:mb-10 lg:mb-12">
+        <Banner />
+      </div>
+      <div className="my-8 md:my-10 lg:my-12">
+        <CategoryContainerHome />
       </div>
     </div>
   );

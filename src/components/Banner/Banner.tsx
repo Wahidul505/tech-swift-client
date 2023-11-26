@@ -14,12 +14,12 @@ const Banner = () => {
         href="/"
         size="big"
         imgSrc="https://i.ibb.co/Mpnbmfx/iphone.png"
-        bg="primary-bg"
+        bg="secondary-bg"
       >
         <BannerHeading
           label="Unleash Innovation"
           subLabel="with the Latest iPhones"
-          color="secondary-text"
+          color="primary-text"
           orientation="landscape"
         />
       </BannerLayout>
@@ -27,12 +27,12 @@ const Banner = () => {
         href="/"
         size="small"
         imgSrc="https://i.ibb.co/BBDrRkH/airpods.png"
-        bg="secondary-bg"
+        bg="primary-bg"
       >
         <BannerHeading
           label="Unrivaled Sound:"
           subLabel="AirPods"
-          color="primary-text"
+          color="secondary-text"
           orientation="square"
         />
       </BannerLayout>

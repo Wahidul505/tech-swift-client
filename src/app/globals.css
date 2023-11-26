@@ -18,17 +18,17 @@ body {
   color: #457b9d;
 }
 
-.primary-bg {
+.secondary-bg {
   background-color: #1d3557;
 }
-.primary-text {
+.secondary-text {
   color: #1d3557;
 }
 
-.secondary-bg {
+.primary-bg {
   background-color: #457b9d;
 }
-.secondary-text {
+.primary-text {
   color: #457b9d;
 }
 

@@ -9,7 +9,7 @@ const ShopPage = () => {
   if (isLoading) return <LoadingPage />;
   return (
     <div>
-      <div className="flex justify-center flex-wrap">
+      <div className="flex justify-center flex-wrap w-full">
         {data &&
           data?.map((product: any) => (
             <ProductCard key={product?.id} product={product} />
