@@ -17,7 +17,7 @@ const CategoryBar = () => {
             key={category?._id}
             className="mx-3 my-1 md:my-0 md:mx-4 lg:mx-5 info"
           >
-            <Link href={"/"} className="uppercase no-underline primary-text">
+            <Link href={"/"} className="no-underline primary-text">
               {category?.title}
             </Link>
           </div>
