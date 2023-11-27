@@ -10,13 +10,16 @@ import { useCreateOrderMutation } from "@/redux/api/orderApi";
 import PrimaryButton from "../Button/PrimaryButton";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { orderSchema } from "@/schema/order";
+import FormRadio from "./FormRadio";
+import CardHeading from "../Heading/CardHeading";
 
 interface IProps {
-  productId: string;
+  cart: any;
 }
 
-const CheckoutForm = ({ productId }: IProps) => {
+const CheckoutForm = ({ cart }: IProps) => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [payment, setPayment] = useState("");
   const [createOrder] = useCreateOrderMutation();
   const stripe = useStripe();
   const elements = useElements();
@@ -27,12 +30,16 @@ const CheckoutForm = ({ productId }: IProps) => {
   const router = useRouter();
 
   const handleSubmit = async (data: any) => {
-    data.product = productId;
-    data.user = userId;
+    !payment && toast.error("Please select a payment method");
+    data.payment = payment;
+    data.products = cart?.map((product: any, index: number) => ({
+      product: product?.product?._id,
+      quantity: product?.quantity,
+    }));
     const result = await createOrder(data).unwrap();
     if (!result) {
       toast.error("Fill up all the information");
-    } else {
+    } else if (result && payment === "gateway") {
       if (!stripe || !elements) {
         return;
       }
@@ -64,10 +71,15 @@ const CheckoutForm = ({ productId }: IProps) => {
         setErrorMessage(intentError?.message as string);
       } else {
         toast.success("Your Order is Confirmed");
-        router.push(`/success/${result?._id}`);
       }
+    } else if (result) {
+      toast.success("Your Order is Confirmed");
+    } else {
+      toast.error("Something went wrong");
     }
   };
+
+  console.log(payment);
 
   return (
     <div>
@@ -76,39 +88,63 @@ const CheckoutForm = ({ productId }: IProps) => {
         doReset={false}
         resolver={yupResolver(orderSchema)}
       >
-        <FormInput name="name" label="Your Name" placeholder="Your full name" />
-        <FormInput
-          name="phone"
-          label="Phone Number"
-          placeholder="Your contact number"
-        />
-        <FormInput
-          name="location"
-          label="Address"
-          placeholder="Your full address"
-        />
-        <CardElement
-          className="border border-solid  border-[#3c6e71] rounded-2xl px-2 py-3 text-xl"
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+        <div className="m-4 lg:m-5 bg-white p-3 md:p-4 shadow-lg rounded-2xl ">
+          <CardHeading serial={2} label="Customer Information" />
+          <FormInput
+            name="name"
+            label="Your Name"
+            placeholder="Your full name"
+          />
+          <FormInput
+            name="phone"
+            label="Phone Number"
+            placeholder="Your contact number"
+          />
+          <FormInput
+            name="location"
+            label="Address"
+            placeholder="Your full address"
+          />
+        </div>
+        <div className="m-4 lg:m-5 bg-white p-3 md:p-4 shadow-lg rounded-2xl">
+          <CardHeading serial={3} label="Payment Method" />
+          <div className="mb-1 info primary-text">Select a Payment method</div>
+
+          <FormRadio
+            value="cod"
+            label="Cash on Delivery"
+            handler={setPayment}
+          />
+          <FormRadio
+            value="gateway"
+            label="Online Payment"
+            handler={setPayment}
+          />
+          {payment === "gateway" && (
+            <CardElement
+              className="border border-solid  border-[#3c6e71] rounded-2xl px-2 py-3 text-xl mt-3"
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
+                  },
                 },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-        {errorMessage && (
-          <p className="text-sm text-red-500 mt-2 ">{errorMessage}</p>
-        )}
-        <div className="mt-3 text-center">
-          <PrimaryButton type="submit" label="Confirm Order" />
+              }}
+            />
+          )}
+          {errorMessage && (
+            <p className="text-sm text-red-500 mt-2 ">{errorMessage}</p>
+          )}
+          <div className="mt-3 md:mt-5 text-center">
+            <PrimaryButton type="submit" label="Confirm Order" />
+          </div>
         </div>
       </Form>
     </div>
