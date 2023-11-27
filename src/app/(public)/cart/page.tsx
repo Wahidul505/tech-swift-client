@@ -10,6 +10,8 @@ import { FiTrash } from "react-icons/fi";
 import toast from "react-hot-toast";
 import PrimaryButton from "@/components/Button/PrimaryButton";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { checkout } from "@/redux/slices/cartSlice";
 
 const columns = [
   { key: "image", label: "Image" },
@@ -22,6 +24,7 @@ const CartPage = () => {
   const [cart, setCart] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const cartStringify = getFromLocalStorage("cart");
@@ -119,7 +122,7 @@ const CartPage = () => {
 
   return (
     <div>
-      <CustomTable columns={columns} data={cartData} />
+      <CustomTable columns={columns} data={cartData} action={true} />
       <div className="my-6 md:my-10">
         <div className="primary-text text flex justify-end">
           <span className=" text-gray-800 mr-2 md:mr-5">Sub-Total: </span> $
@@ -139,7 +142,14 @@ const CartPage = () => {
           label="Continue Shopping"
           size="small"
         />
-        <PrimaryButton label="Checkout" size="small" />
+        <PrimaryButton
+          onClick={() => {
+            dispatch(checkout(cart));
+            router.push("/checkout");
+          }}
+          label="Checkout"
+          size="small"
+        />
       </div>
     </div>
   );

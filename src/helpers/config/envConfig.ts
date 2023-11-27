@@ -4,3 +4,5 @@ export const getBaseURL = (): string => {
     "https://tech-swift-server.vercel.app/api/v1"
   );
 };
+
+export const getStripPK = () => process.env.STRIPE_PK;
