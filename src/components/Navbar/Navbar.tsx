@@ -1,5 +1,5 @@
 "use client";
-import { commonItems, customerItems } from "@/constants/linkItems";
+import { adminItems, commonItems, customerItems } from "@/constants/linkItems";
 import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,18 +11,27 @@ import { authKey } from "@/constants/authToken";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [user, setUser] = useState("");
-  const { userId } = getUserInfo() as { userId: string };
+  const [user, setUser] = useState({
+    id: "",
+    role: "",
+  });
+  const { userId, role } = getUserInfo() as { userId: string; role: string };
   const router = useRouter();
   const handleLogout = () => {
     removeUserInfo(authKey);
-    setUser("");
+    setUser({
+      id: "",
+      role: "",
+    });
     router.push("/login");
   };
 
   useEffect(() => {
-    setUser(userId);
-  }, [userId]);
+    setUser({
+      id: userId,
+      role: role,
+    });
+  }, [userId, role]);
 
   return (
     <div className="fixed top-0 left-0 right-0 base-bg shadow z-20">
@@ -30,45 +39,61 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="dropdown">
             {/* start  */}
-            <div className="drawer">
-              <input
-                id="dashboard-drawer"
-                type="checkbox"
-                className="drawer-toggle"
-              />
-              <div className="drawer-content">
-                {/* Page content here */}
+            {user?.id && (
+              <div className="drawer">
+                <input
+                  id="dashboard-drawer"
+                  type="checkbox"
+                  className="drawer-toggle"
+                />
+                <div className="drawer-content">
+                  {/* Page content here */}
 
-                <label
-                  htmlFor="dashboard-drawer"
-                  tabIndex={0}
-                  className="drawer-button btn btn-ghost lg:hidden"
-                >
-                  <CgMenuLeftAlt className="text-2xl" />
-                </label>
+                  <label
+                    htmlFor="dashboard-drawer"
+                    tabIndex={0}
+                    className="drawer-button btn btn-ghost lg:hidden"
+                  >
+                    <CgMenuLeftAlt className="text-2xl" />
+                  </label>
+                </div>
+                <div className="drawer-side">
+                  <label
+                    htmlFor="dashboard-drawer"
+                    aria-label="close sidebar"
+                    className="drawer-overlay"
+                  ></label>
+                  <ul className="menu p-4 w-44 md:w-60 min-h-full base-bg">
+                    {user.role === "customer" &&
+                      customerItems?.map((item) => (
+                        <li key={item?.id}>
+                          <Link
+                            className={`no-underline text-gray-800 info mx-3 mb-2 lg:mb-0 ${
+                              pathname == item?.href ? "text-[#457b9d]" : ""
+                            }`}
+                            href={item?.href}
+                          >
+                            {item?.label}
+                          </Link>
+                        </li>
+                      ))}
+                    {user.role === "admin" &&
+                      adminItems?.map((item) => (
+                        <li key={item?.id}>
+                          <Link
+                            className={`no-underline text-gray-800 info mx-3 mb-2 lg:mb-0 ${
+                              pathname == item?.href ? "text-[#457b9d]" : ""
+                            }`}
+                            href={item?.href}
+                          >
+                            {item?.label}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
               </div>
-              <div className="drawer-side">
-                <label
-                  htmlFor="dashboard-drawer"
-                  aria-label="close sidebar"
-                  className="drawer-overlay"
-                ></label>
-                <ul className="menu p-4 w-44 md:w-60 min-h-full base-bg">
-                  {customerItems?.map((item) => (
-                    <li key={item?.id}>
-                      <Link
-                        className={`no-underline text-gray-800 info mx-3 ${
-                          pathname == item?.href ? "text-[#457b9d]" : ""
-                        }`}
-                        href={item?.href}
-                      >
-                        {item?.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            )}
             {/* ends */}
           </div>
           <a className="btn btn-ghost text-xl">Tech Swift</a>
@@ -88,8 +113,8 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div className="navbar-end ">
-          {!user ? (
+        <div className="navbar-end">
+          {!user.id ? (
             <div className="hidden lg:flex">
               <Link
                 href={"/login"}
@@ -109,12 +134,14 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <PrimaryButton
-              onClick={handleLogout}
-              label="Logout"
-              type="button"
-              size="small"
-            />
+            <div className="hidden lg:inline">
+              <PrimaryButton
+                onClick={handleLogout}
+                label="Logout"
+                type="button"
+                size="small"
+              />
+            </div>
           )}
           <div className="drawer drawer-end lg:hidden flex justify-end">
             <input
@@ -140,10 +167,35 @@ const Navbar = () => {
                 className="drawer-overlay"
               ></label>
               <ul className="menu p-4 w-44 md:w-60 min-h-full base-bg">
+                {!user.id && (
+                  <>
+                    <li>
+                      {" "}
+                      <Link
+                        href={"/login"}
+                        className={`no-underline text-gray-800 info lg:mx-3 mb-2 lg:mb-0${
+                          pathname == "/login" ? "text-[#457b9d]" : ""
+                        }`}
+                      >
+                        Login
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={"/register"}
+                        className={`no-underline text-gray-800 info lg:mx-3 mb-2 lg:mb-0  ${
+                          pathname == "/register" ? "text-[#457b9d]" : ""
+                        }`}
+                      >
+                        Create Account
+                      </Link>
+                    </li>
+                  </>
+                )}
                 {commonItems?.map((item) => (
                   <li key={item?.id}>
                     <Link
-                      className={`no-underline text-gray-800 info mx-3 ${
+                      className={`no-underline text-gray-800 info lg:mx-3 mb-2 lg:mb-0 ${
                         pathname == item?.href ? "text-[#457b9d]" : ""
                       }`}
                       href={item?.href}
@@ -152,6 +204,14 @@ const Navbar = () => {
                     </Link>
                   </li>
                 ))}
+                {user?.id && (
+                  <PrimaryButton
+                    onClick={handleLogout}
+                    label="Logout"
+                    type="button"
+                    size="small"
+                  />
+                )}
               </ul>
             </div>
           </div>

@@ -20,6 +20,7 @@ interface IProps {
 const CheckoutForm = ({ cart }: IProps) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [payment, setPayment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [createOrder] = useCreateOrderMutation();
   const stripe = useStripe();
   const elements = useElements();
@@ -30,7 +31,12 @@ const CheckoutForm = ({ cart }: IProps) => {
   const router = useRouter();
 
   const handleSubmit = async (data: any) => {
-    !payment && toast.error("Please select a payment method");
+    setIsLoading(true);
+    if (!payment) {
+      toast.error("Please select a payment method");
+      setIsLoading(false);
+      return;
+    }
     data.payment = payment;
     data.products = cart?.map((product: any, index: number) => ({
       product: product?.product?._id,
@@ -39,12 +45,16 @@ const CheckoutForm = ({ cart }: IProps) => {
     const result = await createOrder(data).unwrap();
     if (!result) {
       toast.error("Fill up all the information");
+      setIsLoading(false);
+      return;
     } else if (result && payment === "gateway") {
       if (!stripe || !elements) {
+        setIsLoading(false);
         return;
       }
       const card = elements.getElement(CardElement);
       if (card == null) {
+        setIsLoading(false);
         return;
       }
       const { error } = await stripe.createPaymentMethod({
@@ -68,18 +78,20 @@ const CheckoutForm = ({ cart }: IProps) => {
           },
         });
       if (intentError) {
+        setIsLoading(false);
         setErrorMessage(intentError?.message as string);
       } else {
+        setIsLoading(false);
         toast.success("Your Order is Confirmed");
       }
     } else if (result) {
+      setIsLoading(false);
       toast.success("Your Order is Confirmed");
     } else {
+      setIsLoading(false);
       toast.error("Something went wrong");
     }
   };
-
-  console.log(payment);
 
   return (
     <div>
@@ -88,7 +100,7 @@ const CheckoutForm = ({ cart }: IProps) => {
         doReset={false}
         resolver={yupResolver(orderSchema)}
       >
-        <div className="m-4 lg:m-5 bg-white p-3 md:p-4 shadow-lg rounded-2xl ">
+        <div className="m-4 lg:m-5 bg-gray-100 p-3 md:p-4 shadow-lg rounded-2xl ">
           <CardHeading serial={2} label="Customer Information" />
           <FormInput
             name="name"
@@ -106,7 +118,7 @@ const CheckoutForm = ({ cart }: IProps) => {
             placeholder="Your full address"
           />
         </div>
-        <div className="m-4 lg:m-5 bg-white p-3 md:p-4 shadow-lg rounded-2xl">
+        <div className="m-4 lg:m-5 bg-gray-100 p-3 md:p-4 shadow-lg rounded-2xl">
           <CardHeading serial={3} label="Payment Method" />
           <div className="mb-1 info primary-text">Select a Payment method</div>
 
@@ -143,7 +155,11 @@ const CheckoutForm = ({ cart }: IProps) => {
             <p className="text-sm text-red-500 mt-2 ">{errorMessage}</p>
           )}
           <div className="mt-3 md:mt-5 text-center">
-            <PrimaryButton type="submit" label="Confirm Order" />
+            {!isLoading ? (
+              <PrimaryButton type="submit" label="Confirm Order" />
+            ) : (
+              <PrimaryButton type="button" label="Loading..." />
+            )}
           </div>
         </div>
       </Form>

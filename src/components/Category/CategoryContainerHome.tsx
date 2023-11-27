@@ -14,7 +14,7 @@ const CategoryContainerHome = () => {
   return (
     <Swiper
       spaceBetween={50}
-      slidesPerView={4}
+      slidesPerView={3}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
       modules={[Navigation, Pagination, A11y]}
@@ -28,15 +28,15 @@ const CategoryContainerHome = () => {
             className="flex justify-center cursor-pointer"
             onClick={() => router.push(`/category/${category?._id}`)}
           >
-            <div className="h-36 w-52 md:h-56 md:w-72 lg:h-64 lg:w-96 flex flex-col items-center justify-center shadow-lg rounded-2xl mx-1 p-3 md:p-5 base-bg shadow-gray-300">
+            <div className="h-20 w-20 md:h-32 md:w-52 lg:h-64 lg:w-96 flex flex-col items-center justify-center shadow-lg rounded-2xl mx-1 p-3 md:p-5 base-bg shadow-gray-300 my-5">
               <Image
                 src={category?.image}
                 alt=""
                 width={500}
                 height={500}
-                className="h-16 w-28 md:h-24 md:w-32 lg:h-28 lg:w-40"
+                className="h-12 w-20 md:h-24 md:w-32 lg:h-28 lg:w-40"
               />
-              <div className="primary-text heading mt-3 md:mt-6">
+              <div className="primary-text text mt-3 md:mt-6">
                 {category?.title}
               </div>
             </div>

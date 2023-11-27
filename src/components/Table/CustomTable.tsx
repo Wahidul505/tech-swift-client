@@ -15,7 +15,7 @@ interface IProps {
 const CustomTable = ({ columns, data, action, shadow = true }: IProps) => {
   return (
     <div
-      className={`overflow-x-auto text-gray-800 bg-white rounded-2xl overflow-hidden ${
+      className={`overflow-x-auto text-gray-800 bg-gray-100 rounded-2xl overflow-hidden ${
         shadow ? "shadow-2xl" : "shadow-none"
       }`}
     >

@@ -1,3 +1,4 @@
+import GoToCartButton from "@/components/Button/GoToCartButton";
 import CategoryBar from "@/components/Navbar/CategoryBar";
 import Navbar from "@/components/Navbar/Navbar";
 import React from "react";
@@ -11,6 +12,7 @@ const PublicLayout = ({ children }: IProps) => {
     <div className="">
       <CategoryBar />
       <div className="pt-24 md:pt-16">{children}</div>
+      <GoToCartButton />
     </div>
   );
 };

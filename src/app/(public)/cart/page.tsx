@@ -122,8 +122,13 @@ const CartPage = () => {
 
   return (
     <div>
-      <CustomTable columns={columns} data={cartData} action={true} />
-      <div className="my-6 md:my-10">
+      <CustomTable
+        columns={columns}
+        data={cartData}
+        action={true}
+        shadow={false}
+      />
+      <div className="my-3 md:my-8">
         <div className="primary-text text flex justify-end">
           <span className=" text-gray-800 mr-2 md:mr-5">Sub-Total: </span> $
           {subTotal.toFixed(2)}

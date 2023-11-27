@@ -74,7 +74,7 @@ const CheckoutPage = () => {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3">
-        <div className="col-span-2 m-4 lg:m-5 bg-white rounded-2xl p-3 lg:p-4 shadow-lg">
+        <div className="col-span-2 m-4 lg:m-5 bg-gray-100 rounded-2xl p-3 lg:p-4 shadow-lg">
           <CardHeading serial={1} label="Order Overview" />
           <CustomTable
             columns={columns}
