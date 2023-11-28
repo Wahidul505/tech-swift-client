@@ -1,6 +1,6 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Pagination, A11y } from "swiper/modules";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
 import LoadingPage from "@/app/loading";
 import Image from "next/image";
@@ -25,10 +25,10 @@ const CategoryContainerHome = () => {
         data?.map((category: any) => (
           <SwiperSlide
             key={category?._id}
-            className="flex justify-center cursor-pointer"
+            className="flex justify-center cursor-pointer mb-4"
             onClick={() => router.push(`/category/${category?._id}`)}
           >
-            <div className="h-20 w-20 md:h-32 md:w-52 lg:h-64 lg:w-96 flex flex-col items-center justify-center shadow-lg rounded-2xl mx-1 p-3 md:p-5 base-bg shadow-gray-300 my-5">
+            <div className="h-20 w-20 md:h-32 md:w-52 lg:h-64 lg:w-96 flex flex-col items-center justify-center shadow-lg rounded-2xl  p-3 md:p-5 bg-gray-100 m-3 md:m-5 lg:m-8">
               <Image
                 src={category?.image}
                 alt=""

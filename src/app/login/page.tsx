@@ -37,7 +37,7 @@ const LoginPage = () => {
 
   return (
     <div className="w-5/6 md:w-2/3 lg:w-1/3 mx-auto base-bg border border-solid border-[#457b9d] rounded-2xl p-3 md:p-7">
-      <Heading label="Login" subLabel="to your Account" />
+      <Heading label="Login to your Account" />
       <Form
         submitHandler={handleSubmit}
         resolver={yupResolver(authSchema)}
