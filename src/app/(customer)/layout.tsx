@@ -27,7 +27,7 @@ const CustomerLayout = ({ children }: IProps) => {
     <div className="">
       <CategoryBar />
       <div className="flex">
-        <div className="lg:w-64 xl:w-72 h-screen lg:flex flex-col pt-12 hidden">
+        <div className="lg:w-64 xl:w-72 h-screen lg:flex flex-col pt-16 hidden">
           {customerItems?.map((item: any) => (
             <Link
               key={item?.id}
@@ -38,7 +38,9 @@ const CustomerLayout = ({ children }: IProps) => {
             </Link>
           ))}
         </div>
-        <div className="pt-24 md:pt-12 lg:px-8">{children}</div>
+        <div className="pt-24 md:pt-20 lg:pt-16 lg:px-8 w-full flex justify-center ">
+          {children}
+        </div>
       </div>
     </div>
   );

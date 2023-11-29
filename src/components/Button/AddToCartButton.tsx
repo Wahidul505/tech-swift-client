@@ -33,7 +33,7 @@ const AddToCartButton = ({ product }: { product: any }) => {
       onClick={() => handleAddToCart(product?._id)}
       className="border-none cursor-pointer bg-transparent"
     >
-      <BsCart2 className="text-xl lg:text-2xl" />
+      <BsCart2 className="text-xl md:text-2xl lg:text-3xl text-gray-800" />
     </button>
   );
 };

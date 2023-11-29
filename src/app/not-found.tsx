@@ -1,9 +1,17 @@
 import React from "react";
+import notFoundImg from "../resources/404 Error Page not Found with people connecting a plug-amico.png";
+import Image from "next/image";
 
 const NotFoundPage = () => {
   return (
-    <div className="bg-[#1e1e24] text-[#fff8f0] flex justify-center items-center h-screen w-full">
-      <h1 className="text-center lg:text-4xl">Page Not Found</h1>
+    <div className=" text-[#fff8f0] flex justify-center items-center h-screen w-full">
+      <Image
+        src={notFoundImg}
+        alt=""
+        width={500}
+        height={500}
+        className="rounded-2xl"
+      />
     </div>
   );
 };

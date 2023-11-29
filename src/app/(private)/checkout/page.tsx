@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { getStripPK } from "@/helpers/config/envConfig";
 import CheckoutForm from "@/components/Forms/CheckoutForm";
 import CustomTable from "@/components/Table/CustomTable";
 import CardHeading from "@/components/Heading/CardHeading";
-import PrimaryButton from "@/components/Button/PrimaryButton";
 import { useRouter } from "next/navigation";
+import ErrorHeading from "@/components/Heading/ErrorHeading";
+import checkoutImg from "../../../resources/Ecommerce checkout laptop-pana.png";
 
 const stripePromise = loadStripe(
   "pk_test_51L0f8BK96S4Dx2sqbNrb8CtiStAD5MvRtuaitvoIxKHkgpfokbzhX3YpcAYd1dbbGAqk5v0cqrXzzSL581c6mJHw00LKqElvb1" as string
@@ -60,14 +60,12 @@ const CheckoutPage = () => {
 
   if (!cart || cart?.length < 1) {
     return (
-      <div className="text-center">
-        <div className="primary-text heading mb-3">Cart is Empty</div>
-        <PrimaryButton
-          onClick={() => router.push("/cart")}
-          label="Back to Cart"
-          size="small"
-        />
-      </div>
+      <ErrorHeading
+        imgSrc={checkoutImg}
+        label="Nothing to checkout"
+        btnLabel="Back to Cart"
+        btnHref="/cart"
+      />
     );
   }
 

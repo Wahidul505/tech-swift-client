@@ -15,6 +15,7 @@
     "@stripe/stripe-js": "^2.2.0",
     "axios": "^1.5.1",
     "daisyui": "^4.4.6",
+    "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
     "jwt-decode": "^3.1.2",
     "next": "13.5.4",

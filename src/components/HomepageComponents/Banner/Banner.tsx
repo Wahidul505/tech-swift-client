@@ -26,7 +26,7 @@ const Banner = () => {
         size="small"
         imgSrc="https://i.ibb.co/N9BBJbv/aryan-dhiman-i-GLLt-LINSkw-unsplash-1.jpg"
       >
-        <div onClick={() => router.push("/shop")}>
+        <div>
           <Heading label="Find Accessories" color="text-white" center={false} />
         </div>
       </BannerLayout>
@@ -34,7 +34,7 @@ const Banner = () => {
         size="small"
         imgSrc="https://i.ibb.co/qryPfb2/altumcode-k-Q55-67yx-E-unsplash-1.jpg"
       >
-        <div onClick={() => router.push("/shop")}>
+        <div>
           <Heading label="New iPhones" color="text-white" center={false} />
         </div>
       </BannerLayout>

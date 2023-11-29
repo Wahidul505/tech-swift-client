@@ -82,15 +82,18 @@ const CheckoutForm = ({ cart }: IProps) => {
         setErrorMessage(intentError?.message as string);
       } else {
         setIsLoading(false);
+        router.push("/my-order");
         toast.success("Your Order is Confirmed");
       }
     } else if (result) {
       setIsLoading(false);
+      router.push("/my-order");
       toast.success("Your Order is Confirmed");
     } else {
       setIsLoading(false);
       toast.error("Something went wrong");
     }
+    console.log(result);
   };
 
   return (

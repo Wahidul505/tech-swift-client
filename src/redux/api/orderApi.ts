@@ -16,7 +16,7 @@ export const orderApi = baseApi.injectEndpoints({
 
     myOrders: build.query({
       query: (userId: string) => ({
-        url: `/my-order/${userId}`,
+        url: `${ORDER_URL}/my-order/${userId}`,
         method: "GET",
       }),
       providesTags: [tagTypes.order],
@@ -24,7 +24,7 @@ export const orderApi = baseApi.injectEndpoints({
 
     mySingleOrder: build.query({
       query: (id: string) => ({
-        url: `/my-order-single/${id}`,
+        url: `${ORDER_URL}/my-order-single/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.order],

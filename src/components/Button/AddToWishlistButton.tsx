@@ -46,15 +46,15 @@ const AddToWishlistButton = ({ product }: { product: any }) => {
     <>
       {userId &&
         (isWishListed ? (
-          <button disabled className="border-none ">
-            <IoMdHeart className="text-xl lg:text-2xl text-red-500 mr-2" />
+          <button disabled className="border-none  bg-transparent">
+            <IoMdHeart className="text-xl md:text-2xl lg:text-3xl primary-text mr-2 " />
           </button>
         ) : (
           <button
             onClick={() => handleAddToWishlist(product?._id)}
-            className="border-none cursor-pointer"
+            className="border-none cursor-pointer bg-transparent"
           >
-            <IoMdHeartEmpty className="text-xl lg:text-2xl  mr-2" />
+            <IoMdHeartEmpty className="text-xl md:text-2xl lg:text-3xl  mr-2 text-gray-800" />
           </button>
         ))}
     </>

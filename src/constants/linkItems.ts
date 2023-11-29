@@ -1,7 +1,7 @@
 export const commonItems = [
   { id: 1, label: "Home", href: "/" },
   { id: 2, label: "Shop", href: "/shop" },
-  { id: 3, label: "About", href: "/about" },
+  { id: 3, label: "Account", href: "/account" },
 ];
 
 export const customerItems = [

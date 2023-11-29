@@ -1,5 +1,4 @@
 "use client";
-import CartProductCard from "@/components/Card/CartProductCard";
 import CustomTable from "@/components/Table/CustomTable";
 import { getFromLocalStorage, setToLocalStorage } from "@/utils/localStorage";
 import Image from "next/image";
@@ -12,6 +11,8 @@ import PrimaryButton from "@/components/Button/PrimaryButton";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { checkout } from "@/redux/slices/cartSlice";
+import cartImg from "../../../resources/Add to Cart-amico.png";
+import ErrorHeading from "@/components/Heading/ErrorHeading";
 
 const columns = [
   { key: "image", label: "Image" },
@@ -43,7 +44,14 @@ const CartPage = () => {
   }, [cart]);
 
   if (cart.length === 0) {
-    return <div>No Products added into cart</div>;
+    return (
+      <ErrorHeading
+        imgSrc={cartImg}
+        label="Your Cart is empty"
+        btnLabel="Back to Shop"
+        btnHref="/shop"
+      />
+    );
   }
 
   const handleQuantity = (operation: string, currentProduct: any) => {

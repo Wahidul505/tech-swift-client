@@ -7,7 +7,7 @@ import AddToWishlistButton from "../Button/AddToWishlistButton";
 const ProductCard = ({ product }: { product: any }) => {
   const router = useRouter();
   return (
-    <div className="w-56 lg:w-72 xl:w-80 m-3 md:m-5 lg:m-8 rounded-2xl overflow-hidden border border-solid border-gray-300 transition-transform duration-400 ease-in cursor-pointer bg-white hover:scale-105 duration-300">
+    <div className="w-56 lg:w-72 xl:w-80 m-3 md:m-5 lg:m-8 rounded-2xl overflow-hidden shadow-lg transition-transform duration-400 ease-in cursor-pointer bg-white hover:scale-105 duration-300">
       <div onClick={() => router.push(`/product/${product?._id}`)} className="">
         <Image
           src={product?.image}

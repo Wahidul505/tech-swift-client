@@ -14,7 +14,7 @@ const Heading = ({
   color?: string;
 }) => {
   return (
-    <div className="mb-4 md:mb-7 lg:mb-10 flex flex-col ">
+    <div className="mb-3 md:mb-5 lg:mb-8 flex flex-col ">
       <div
         className={`text-xl md:text-2xl lg:text-4xl xl:text-5xl mb-2 md:mb-4 font-thin ${
           center ? "text-center" : "text-start"

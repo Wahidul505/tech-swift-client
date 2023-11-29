@@ -22,7 +22,7 @@ const ProductDetailsPage = ({ params }: { params: any }) => {
           alt=""
           width={500}
           height={500}
-          className="w-56 h-56 md:w-96 md:h-96 rounded-2xl"
+          className="w-56 h-56 md:w-96 md:h-96 rounded-2xl border border-solid border-gray-300"
         />
         <div className="mt-8 lg:mt-0 lg:ml-8 pt-2 w-full">
           <h1 className="heading primary-text">{data?.title}</h1>

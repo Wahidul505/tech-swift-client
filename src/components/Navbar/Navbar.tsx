@@ -96,7 +96,10 @@ const Navbar = () => {
             )}
             {/* ends */}
           </div>
-          <a className="btn btn-ghost text-xl">Tech Swift</a>
+          <Link href={"/"} className="pl-2 no-underline heading">
+            <span className="secondary-text">Tech</span>
+            <span className="primary-text"> Swift</span>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">

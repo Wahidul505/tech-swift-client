@@ -11,17 +11,17 @@ interface IProps {
   validation?: object;
   label?: string;
   disabled?: boolean;
+  defaultValue?: string;
 }
 
 const FormInput = ({
   name,
   type,
   value = "",
-  id,
   placeholder,
-  validation,
   label,
   disabled = false,
+  defaultValue = "",
 }: IProps) => {
   const {
     control,
@@ -45,6 +45,7 @@ const FormInput = ({
             {...field}
             value={value ? value : field?.value}
             disabled={disabled}
+            defaultValue={defaultValue}
             className="input focus:outline-none md:text-lg w-full bg-transparent border border-solid border-[#1d3557] box-border text-gray-800 rounded-2xl info "
           />
         )}
