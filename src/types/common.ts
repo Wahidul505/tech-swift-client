@@ -25,3 +25,5 @@ export type IGenericErrorMessage = {
 export type IChildrenProps = {
   children: React.ReactNode | React.ReactElement;
 };
+
+export type IItems = { id: number; label: string; href: string };

@@ -36,15 +36,12 @@ const MyWishlistPage = () => {
     model: product?.product?.details?.model,
     price: `$${product?.product?.price}`,
     actionButton: (
-      <div className="flex items-center space-x-4">
-        <AddToCartButton product={product?.product} />
-        <Link
-          href={`/product/${product?.product?._id}`}
-          className="no-underline text-gray-800 heading"
-        >
-          <GoLinkExternal />
-        </Link>
-      </div>
+      <Link
+        href={`/product/${product?.product?._id}`}
+        className="no-underline text-gray-800 heading"
+      >
+        <GoLinkExternal />
+      </Link>
     ),
   }));
 

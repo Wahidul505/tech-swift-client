@@ -1,5 +1,10 @@
 "use client";
-import { adminItems, commonItems, customerItems } from "@/constants/linkItems";
+import {
+  adminCenterItems,
+  adminItems,
+  commonItems,
+  customerItems,
+} from "@/constants/linkItems";
 import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -103,17 +108,29 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            {commonItems?.map((item) => (
-              <Link
-                key={item?.id}
-                className={`no-underline text-gray-800 info mx-3 ${
-                  pathname == item?.href ? "text-[#457b9d]" : ""
-                }`}
-                href={item?.href}
-              >
-                {item?.label}
-              </Link>
-            ))}
+            {role !== "admin"
+              ? commonItems?.map((item) => (
+                  <Link
+                    key={item?.id}
+                    className={`no-underline text-gray-800 info mx-3 ${
+                      pathname == item?.href ? "text-[#457b9d]" : ""
+                    }`}
+                    href={item?.href}
+                  >
+                    {item?.label}
+                  </Link>
+                ))
+              : adminCenterItems?.map((item) => (
+                  <Link
+                    key={item?.id}
+                    className={`no-underline text-gray-800 info mx-3 ${
+                      pathname == item?.href ? "text-[#457b9d]" : ""
+                    }`}
+                    href={item?.href}
+                  >
+                    {item?.label}
+                  </Link>
+                ))}
           </ul>
         </div>
         <div className="navbar-end">
@@ -195,18 +212,31 @@ const Navbar = () => {
                     </li>
                   </>
                 )}
-                {commonItems?.map((item) => (
-                  <li key={item?.id}>
-                    <Link
-                      className={`no-underline text-gray-800 info lg:mx-3 mb-2 lg:mb-0 ${
-                        pathname == item?.href ? "text-[#457b9d]" : ""
-                      }`}
-                      href={item?.href}
-                    >
-                      {item?.label}
-                    </Link>
-                  </li>
-                ))}
+                {role !== "admin"
+                  ? commonItems?.map((item) => (
+                      <li key={item?.id}>
+                        <Link
+                          className={`no-underline text-gray-800 info lg:mx-3 mb-2 lg:mb-0 ${
+                            pathname == item?.href ? "text-[#457b9d]" : ""
+                          }`}
+                          href={item?.href}
+                        >
+                          {item?.label}
+                        </Link>
+                      </li>
+                    ))
+                  : adminCenterItems?.map((item) => (
+                      <li key={item?.id}>
+                        <Link
+                          className={`no-underline text-gray-800 info lg:mx-3 mb-2 lg:mb-0 ${
+                            pathname == item?.href ? "text-[#457b9d]" : ""
+                          }`}
+                          href={item?.href}
+                        >
+                          {item?.label}
+                        </Link>
+                      </li>
+                    ))}
                 {user?.id && (
                   <PrimaryButton
                     onClick={handleLogout}

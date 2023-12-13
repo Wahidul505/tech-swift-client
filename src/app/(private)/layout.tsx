@@ -12,13 +12,13 @@ type IProps = {
 
 const PrivateLayout = ({ children }: IProps) => {
   const [loading, setLoading] = useState(true);
-  const { userId } = getUserInfo() as { userId: string };
+  const { userId, role } = getUserInfo() as { userId: string; role: string };
   const router = useRouter();
 
   useEffect(() => {
-    !userId && router.push("/login");
+    (!userId || role === "admin") && router.push("/login");
     setLoading(false);
-  }, [router, userId]);
+  }, [router, userId, role]);
 
   if (loading) return <LoadingPage />;
   return (
