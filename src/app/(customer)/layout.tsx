@@ -19,7 +19,8 @@ const CustomerLayout = ({ children }: IProps) => {
 
   useEffect(() => {
     if (!userId || role === "admin") {
-      router.push("/");
+      removeUserInfo(authKey);
+      router.push("/login");
     }
     setLoading(false);
   }, [router, userId, role]);

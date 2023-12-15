@@ -6,6 +6,8 @@ import Image from "next/image";
 import React from "react";
 import orderImg from "../../../resources/Empty-pana.png";
 import CustomTable from "@/components/Table/CustomTable";
+import { FiEdit3 } from "react-icons/fi";
+import Link from "next/link";
 
 const columns = [
   { key: "image", label: "Category Image" },
@@ -26,6 +28,14 @@ const ManageCategoryPage = () => {
       />
     ),
     title: category?.title,
+    actionButton: (
+      <Link
+        href={`/admin/manage-category/update/${category?._id}`}
+        className="no-underline text-gray-800 heading text flex items-center"
+      >
+        <FiEdit3 />
+      </Link>
+    ),
   }));
 
   if (isLoading) return <LoadingPage />;
@@ -45,7 +55,7 @@ const ManageCategoryPage = () => {
       <CustomTable
         columns={columns}
         data={categories}
-        action={false}
+        action={true}
         shadow={false}
       />
     </div>

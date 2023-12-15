@@ -24,6 +24,9 @@ const AccountPage = () => {
     data.name = data?.name || profileData?.name || "";
     data.phone = data?.phone || profileData?.phone || "";
     data.location = data?.location || profileData?.location || "";
+    if (!profileData) {
+      data.user = userId;
+    }
     delete data.email;
     delete data.role;
     const result = await saveProfile({ id: userId, data: data });
