@@ -1,5 +1,4 @@
 "use client";
-import CategoryBar from "@/components/Navbar/CategoryBar";
 import { getUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -24,12 +23,9 @@ const AdminLayout = ({ children }: IProps) => {
   if (loading) return <LoadingPage />;
   return (
     <div className="">
-      <CategoryBar />
       <div className="flex">
         <Sidebar items={adminItems} />
-        <div className="pt-24 md:pt-20 lg:pt-16 lg:px-8 w-full flex justify-center ">
-          {children}
-        </div>
+        <div className="pt-8 w-full flex justify-center">{children}</div>
       </div>
     </div>
   );

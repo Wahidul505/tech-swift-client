@@ -4,7 +4,7 @@ import { baseApi } from "./baseApi";
 const PRODUCT_URL = "/product";
 
 export const productApi = baseApi.injectEndpoints({
-  endpoints: (build) => ({
+  endpoints: (build: any) => ({
     products: build.query({
       query: (query: Record<string, any>) => ({
         url: PRODUCT_URL,
@@ -32,10 +32,10 @@ export const productApi = baseApi.injectEndpoints({
     }),
 
     updateProduct: build.mutation({
-      query: ({ id, data }: { id: string; data: any }) => ({
+      query: ({ id, payload }: { id: string; payload: any }) => ({
         url: `${PRODUCT_URL}/${id}`,
         method: "PATCH",
-        data: data,
+        data: payload,
       }),
       invalidatesTags: [tagTypes.product],
     }),

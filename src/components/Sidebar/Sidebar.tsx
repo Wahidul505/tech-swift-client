@@ -4,7 +4,7 @@ import React from "react";
 
 const Sidebar = ({ items }: { items: IItems[] }) => {
   return (
-    <div className="lg:w-64 xl:w-72 h-screen lg:flex flex-col pt-16 hidden">
+    <div className="lg:w-64 xl:w-72 h-screen lg:flex flex-col pt-8 hidden">
       {items?.map((item: any) => (
         <Link
           key={item?.id}

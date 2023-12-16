@@ -29,11 +29,9 @@ const CustomerLayout = ({ children }: IProps) => {
   return (
     <div className="">
       <CategoryBar />
-      <div className="flex">
+      <div className="flex pt-14 md:pt-10 lg:pt-8">
         <Sidebar items={customerItems} />
-        <div className="pt-24 md:pt-20 lg:pt-16 lg:px-8 w-full flex justify-center ">
-          {children}
-        </div>
+        <div className="pt-8 w-full flex justify-center">{children}</div>
       </div>
     </div>
   );

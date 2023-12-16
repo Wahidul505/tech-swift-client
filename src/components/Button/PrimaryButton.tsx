@@ -17,8 +17,8 @@ const PrimaryButton = ({
       type={type}
       className={`rounded-xl cursor-pointer text-[#f1faee] transition-colors duration-500 hover:bg-[#1d3557]  bg-[#457b9d] border-none ${
         size === "big"
-          ? "px-4 md:px-6 lg:px-8 h-12 text-lg lg:text-xl"
-          : "px-3 md:px-4 lg:px-5 h-10 text-base lg:text-lg"
+          ? "px-3 md:px-5 lg:px-8 h-8 md:h-10 lg:h-12 text"
+          : "px-2 md:px-3 lg:px-5 h-7 md:h-8 lg:h-10 info"
       }`}
     >
       {label}

@@ -12,10 +12,12 @@ import toast from "react-hot-toast";
 
 const UpdateCategory = ({ params }: { params: any }) => {
   const { categoryId } = params;
-  const { data, isLoading } = useSingleCategoryQuery(categoryId);
+  const { data: categoryData, isLoading: categoryIsLoading } =
+    useSingleCategoryQuery(categoryId);
   const [updateCategory] = useUpdateCategoryMutation();
 
   const handleSubmit = async (data: any) => {
+    data.title = data?.title || categoryData?.title;
     try {
       await updateCategory({ id: categoryId, payload: data });
       toast.success("Category Updated");
@@ -24,7 +26,7 @@ const UpdateCategory = ({ params }: { params: any }) => {
     }
   };
 
-  if (isLoading) return <LoadingPage />;
+  if (categoryIsLoading) return <LoadingPage />;
 
   return (
     <div className="md:w-1/2">
@@ -34,7 +36,7 @@ const UpdateCategory = ({ params }: { params: any }) => {
           type="text"
           placeholder="Enter Category Title"
           label="Category Title"
-          defaultValue={data?.title ? data?.title : ""}
+          defaultValue={categoryData?.title ? categoryData?.title : ""}
         />
 
         <div className="flex flex-col items-center mt-2">
