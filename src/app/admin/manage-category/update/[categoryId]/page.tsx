@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 const UpdateCategory = ({ params }: { params: any }) => {
   const { categoryId } = params;
   const { data: categoryData, isLoading: categoryIsLoading } =
-    useSingleCategoryQuery(categoryId);
+    useSingleCategoryQuery(categoryId) as { data: any; isLoading: any };
   const [updateCategory] = useUpdateCategoryMutation();
 
   const handleSubmit = async (data: any) => {

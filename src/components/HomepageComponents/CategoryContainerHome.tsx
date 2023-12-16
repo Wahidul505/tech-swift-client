@@ -8,7 +8,10 @@ import "swiper/swiper-bundle.css";
 import { useRouter } from "next/navigation";
 
 const CategoryContainerHome = () => {
-  const { data, isLoading } = useCategoriesQuery(undefined);
+  const { data, isLoading } = useCategoriesQuery(undefined) as {
+    data: any;
+    isLoading: any;
+  };
   const router = useRouter();
   if (isLoading) return <LoadingPage />;
   return (

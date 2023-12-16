@@ -12,7 +12,10 @@ const AddToWishlistButton = ({ product }: { product: any }) => {
   const { userId } = getUserInfo() as { userId: string };
   const [addToWishlist] = useAddToWishlistMutation();
   const [isWishListed, setIsWishListed] = useState(false);
-  const { data, isLoading } = useMyWishlistQuery(userId);
+  const { data, isLoading } = useMyWishlistQuery(userId) as {
+    data: any;
+    isLoading: any;
+  };
 
   useEffect(() => {
     if (data) {

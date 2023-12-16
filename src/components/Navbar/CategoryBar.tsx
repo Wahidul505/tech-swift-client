@@ -5,7 +5,10 @@ import Link from "next/link";
 import React from "react";
 
 const CategoryBar = () => {
-  const { data, isLoading } = useCategoriesQuery(undefined);
+  const { data, isLoading } = useCategoriesQuery(undefined) as {
+    data: any;
+    isLoading: any;
+  };
 
   if (isLoading) return <LoadingPage />;
 

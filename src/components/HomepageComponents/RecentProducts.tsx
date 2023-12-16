@@ -9,7 +9,10 @@ import "swiper/swiper-bundle.css";
 import Heading from "../Heading/Heading";
 
 const RecentProducts = () => {
-  const { data, isLoading } = useProductsQuery({ limit: 10, page: 1 });
+  const { data, isLoading } = useProductsQuery({ limit: 10, page: 1 }) as {
+    data: any;
+    isLoading: any;
+  };
 
   if (isLoading) return <LoadingPage />;
   return (

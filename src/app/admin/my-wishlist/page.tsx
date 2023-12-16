@@ -20,7 +20,10 @@ const columns = [
 
 const MyWishlistPage = () => {
   const { userId } = getUserInfo() as { userId: string };
-  const { data, isLoading } = useMyWishlistQuery(userId);
+  const { data, isLoading } = useMyWishlistQuery(userId) as {
+    data: any;
+    isLoading: any;
+  };
 
   const wishlistData = data?.products?.map((product: any) => ({
     image: (

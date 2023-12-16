@@ -14,7 +14,10 @@ const columns = [
 ];
 
 const ManageCategoryPage = () => {
-  const { data, isLoading } = useCategoriesQuery({ limit: 100 });
+  const { data, isLoading } = useCategoriesQuery({ limit: 100 }) as {
+    data: any;
+    isLoading: any;
+  };
 
   const categories = data?.map((category: any) => ({
     image: (

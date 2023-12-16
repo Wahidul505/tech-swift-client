@@ -14,18 +14,23 @@ const columns = [
 ];
 
 const ManageUserPage = () => {
-  const { data, isLoading } = useUsersQuery({ limit: 10000000 });
+  const { data, isLoading } = useUsersQuery({ limit: 10000000 }) as {
+    data: any;
+    isLoading: any;
+  };
 
-  const users = data?.map((user: any) => ({
-    id: user?._id,
-    email: user?.email,
-    role: user?.role || "",
-    actionButton: (
-      <div className="flex items-center space-x-4">
-        <ViewButton />
-      </div>
-    ),
-  }));
+  const users =
+    data instanceof Array &&
+    data?.map((user: any) => ({
+      id: user?._id,
+      email: user?.email,
+      role: user?.role || "",
+      actionButton: (
+        <div className="flex items-center space-x-4">
+          <ViewButton />
+        </div>
+      ),
+    }));
 
   if (isLoading) return <LoadingPage />;
   if (!data || data?.length < 1) {

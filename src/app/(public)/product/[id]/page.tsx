@@ -11,7 +11,10 @@ import { IoMdArrowBack } from "react-icons/io";
 
 const ProductDetailsPage = ({ params }: { params: any }) => {
   const { id } = params;
-  const { data, isLoading } = useSingleProductQuery(id);
+  const { data, isLoading } = useSingleProductQuery(id) as {
+    data: any;
+    isLoading: any;
+  };
   if (isLoading) return <LoadingPage />;
   return (
     <div>

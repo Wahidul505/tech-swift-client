@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 const UpdateProduct = ({ params }: { params: any }) => {
   const { productId } = params;
   const { data: productData, isLoading: isProductLoading } =
-    useSingleProductQuery(productId);
+    useSingleProductQuery(productId) as { data: any; isLoading: any };
   const [updateProduct] = useUpdateProductMutation();
 
   const handleSubmit = async (data: any) => {

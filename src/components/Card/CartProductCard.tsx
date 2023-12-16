@@ -4,7 +4,10 @@ import { useSingleProductQuery } from "@/redux/api/productApi";
 import React from "react";
 
 const CartProductCard = ({ product }: { product: any }) => {
-  const { data, isLoading } = useSingleProductQuery(product?.product);
+  const { data, isLoading } = useSingleProductQuery(product?.product) as {
+    data: any;
+    isLoading: any;
+  };
 
   if (isLoading) return <LoadingPage />;
   console.log(data);

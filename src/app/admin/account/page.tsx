@@ -17,8 +17,9 @@ const AccountPage = () => {
     email: string;
     role: string;
   };
-  const { data: profileData, isLoading: isProfileLoading } =
-    useProfileQuery(userId);
+  const { data: profileData, isLoading: isProfileLoading } = useProfileQuery(
+    userId
+  ) as { data: any; isLoading: any };
   const [saveProfile] = useSaveProfileMutation();
   const handleSubmit = async (data: any) => {
     data.name = data?.name || profileData?.name || "";

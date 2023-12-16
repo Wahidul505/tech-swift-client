@@ -20,27 +20,32 @@ const columns = [
 
 const MyOrderPage = () => {
   const { userId } = getUserInfo() as { userId: string };
-  const { data, isLoading } = useMyOrdersQuery(userId);
+  const { data, isLoading } = useMyOrdersQuery(userId) as {
+    data: any;
+    isLoading: any;
+  };
   const handleCopyToClipBoard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast("Copied to Clipboard");
   };
-  const orders = data?.map((order: any) => ({
-    orderId: (
-      <div
-        className="cursor-pointer"
-        onClick={() => handleCopyToClipBoard(order?._id)}
-      >
-        {order?._id?.slice(0, 7)}...
-      </div>
-    ),
-    orderDate: format(new Date(order?.createdAt), "yyyy-MM-dd"),
-    status: order?.status,
-    totalPrice: `$${order?.totalPrice.toFixed(2)}`,
-    delivery: "$100",
-    payment:
-      order?.payment === "gateway" ? "Gateway (paid)" : "Cash on Delivery",
-  }));
+  const orders =
+    data instanceof Array &&
+    data?.map((order: any) => ({
+      orderId: (
+        <div
+          className="cursor-pointer"
+          onClick={() => handleCopyToClipBoard(order?._id)}
+        >
+          {order?._id?.slice(0, 7)}...
+        </div>
+      ),
+      orderDate: format(new Date(order?.createdAt), "yyyy-MM-dd"),
+      status: order?.status,
+      totalPrice: `$${order?.totalPrice.toFixed(2)}`,
+      delivery: "$100",
+      payment:
+        order?.payment === "gateway" ? "Gateway (paid)" : "Cash on Delivery",
+    }));
 
   if (isLoading) return <LoadingPage />;
 
